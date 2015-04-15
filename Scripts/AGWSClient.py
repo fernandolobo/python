@@ -149,3 +149,33 @@ bcre.LAN_Historico = ''
 print('\n##### INCLUIR BAIXA CRE #####\n')
 msg = client.service.IncluiBaixaContasReceber(bcre)
 print(msg.encode('utf-8'))
+
+print('\n##### PREPARAR CLIENTE #####\n')
+cli = client.factory.create('ns1:TCliente')
+cli.nome = 'Luiz Carlos';
+cli.nomeFantasia = 'Luiz';
+cli.cnpjcpf = '44228633000127';
+cli.grupo = '0001';
+cli.receita = '4010010003';
+cli.agenteCobrador = '0001';
+cli.Vencimento = 10;
+cli.Etiqueta = 1;
+cli.GeraNFAuto = 1;
+cli.RetemISS = 1;
+cli.RetemINSS = 0;
+cli.IM = '1478522';
+cli.AliquotaISS = 12.5;
+cli.identificador = '123456'
+print(cli)
+
+print('\n##### INCLUIR CLIENTE #####\n')
+msg = client.service.IncluiCliente(cli)
+print(msg.encode('utf-8'))
+
+print('\n##### getClienteWithIdentificador #####\n')
+msg = client.service.getClienteWithIdentificador('123456')
+print(msg.encode('utf-8'))
+
+print('\n##### ExcluiClienteWithCNPJCPF #####\n')
+msg = client.service.ExcluiClienteWithCNPJCPF('44228633000127')
+print(msg.encode('utf-8'))
